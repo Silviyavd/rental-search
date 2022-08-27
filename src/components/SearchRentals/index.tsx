@@ -17,7 +17,6 @@ const SearchRentals: React.FC = () => {
       }
 
       const url = `https://search.outdoorsy.com/rentals?filter[keywords]=${query}&page[limit]=${limit}&page[offset]=${offset}`;
-      //const url = `https://search.outdoorsy.com/rentals?filter[keywords]=${query}`;
 
       try {
         const response = await fetch(url);
@@ -39,7 +38,6 @@ const SearchRentals: React.FC = () => {
   }
 
   const nextPage = () => {
-    debugger
      if (limit > rentals.length) {
       return;
     }
