@@ -5,6 +5,8 @@ import './styles.css';
 const SearchRentals: React.FC = () => {
   const [query, setQuery] = useState('');
   const [rentals, setRentals] = useState<RentalData[]>([]);
+  const [offset, setOffset] = useState(0);
+  const limit = 5;
 
   useEffect(() => {
     const loadData = async () => {
@@ -13,7 +15,7 @@ const SearchRentals: React.FC = () => {
         return;
       }
 
-      const url = `https://search.outdoorsy.com/rentals?filter[keywords]=${query}`;
+      const url = `https://search.outdoorsy.com/rentals?filter[keywords]=${query}&page[limit]=${limit}&page[offset]=${offset}`;
 
       try {
         const response = await fetch(url);
@@ -29,10 +31,18 @@ const SearchRentals: React.FC = () => {
     }
     
     loadData();
-  }, [query]);
+  }, [query, offset]);
 
   const searchRentals = async (event: FormEvent) => {
     event.preventDefault();
+  }
+
+  const nextPage = () => {
+    setOffset(() => offset + limit);
+  }
+
+  const prevPage = () => {
+    setOffset(() => offset - limit);
   }
 
   return <div>
@@ -53,6 +63,15 @@ const SearchRentals: React.FC = () => {
         <RentalCard rental={rental} key={rental.id} />
       ))}
     </div>
+    {rentals.length > 0 && (
+      <div className='pageNav'>
+        <button className="button" onClick={prevPage}>Prev</button>
+        <button className="button" onClick={nextPage}>Next</button>
+      </div>
+  )}
+    {rentals.length === 0 && (
+      <div className='pageNav'><p>No results</p></div>
+      )}
   </div>
 }
 
