@@ -70,8 +70,8 @@ const SearchRentals: React.FC = () => {
     </div>
     {query.length !== 0 && rentals.length > 0 && (
       <div className='pageNav'>
-        <button className="button" onClick={prevPage}>Prev</button>
-        <button className="button" onClick={nextPage}>Next</button>
+        <button className={`button ${offset === 0? 'disabled': ''}`} onClick={prevPage}>Prev</button>
+        <button className={`button ${rentals.length < limit? 'disabled': ''}`} onClick={nextPage}>Next</button>   
       </div>
   )}
     {rentals.length === 0 && query.length !== 0 && (

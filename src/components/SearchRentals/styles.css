@@ -28,6 +28,11 @@
   transition: background-color 250ms;
 }
 
+.disabled {
+  background-color: grey;
+  pointer-events: none;
+}
+
 button:hover {
   background-color: rgba(0,0,0,0.85);
 }
