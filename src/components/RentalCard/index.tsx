@@ -1,15 +1,6 @@
 import React from 'react';
 import './styles.css';
-
-export interface RentalData {
-   id: number;
-   attributes: any;
-
-}
-
-export interface RentalCardProps {
-  rental: RentalData;
-}
+import { RentalCardProps } from "../../models/interface";
 
 const RentalCard: React.FC<RentalCardProps> = ({ rental }) => {
   return (

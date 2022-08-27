@@ -1,5 +1,6 @@
 import React, { FormEvent, useState, useEffect } from 'react';
-import RentalCard, { RentalData } from '../RentalCard'
+import RentalCard from '../RentalCard'
+import { RentalData } from "../../models/interface";
 import './styles.css';
 
 const SearchRentals: React.FC = () => {
