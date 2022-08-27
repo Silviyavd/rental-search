@@ -64,17 +64,17 @@ const SearchRentals: React.FC = () => {
     </form>
 
     <div className="card-list">
-      {rentals.map((rental: RentalData) => (
+      {query.length !== 0 && rentals.map((rental: RentalData) => (
         <RentalCard rental={rental} key={rental.id} />
       ))}
     </div>
-    {rentals.length > 0 && (
+    {query.length !== 0 && rentals.length > 0 && (
       <div className='pageNav'>
         <button className="button" onClick={prevPage}>Prev</button>
         <button className="button" onClick={nextPage}>Next</button>
       </div>
   )}
-    {rentals.length === 0 && query !== '' && (
+    {rentals.length === 0 && query.length !== 0 && (
       <div className='pageNav'><p>No results</p></div>
       )}
   </div>
