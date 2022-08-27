@@ -16,6 +16,7 @@ const SearchRentals: React.FC = () => {
       }
 
       const url = `https://search.outdoorsy.com/rentals?filter[keywords]=${query}&page[limit]=${limit}&page[offset]=${offset}`;
+      //const url = `https://search.outdoorsy.com/rentals?filter[keywords]=${query}`;
 
       try {
         const response = await fetch(url);
@@ -24,7 +25,6 @@ const SearchRentals: React.FC = () => {
           x.attributes.imageUrl = data.included.find((y: any) => y.id === x.relationships.primary_image.data.id).attributes.url;
         });
         setRentals(data.data);
-        debugger
       } catch (err) {
         console.log(err);
       }
@@ -38,7 +38,8 @@ const SearchRentals: React.FC = () => {
   }
 
   const nextPage = () => {
-     if (limit >= rentals.length) {
+    debugger
+     if (limit > rentals.length) {
       return;
     }
 
@@ -46,10 +47,6 @@ const SearchRentals: React.FC = () => {
   }
 
   const prevPage = () => {
-    if (offset === 0) {
-      return;
-    }
-
     setOffset(() => offset - limit);
   }
 
@@ -77,7 +74,7 @@ const SearchRentals: React.FC = () => {
         <button className="button" onClick={nextPage}>Next</button>
       </div>
   )}
-    {rentals.length === 0 && (
+    {rentals.length === 0 && query !== '' && (
       <div className='pageNav'><p>No results</p></div>
       )}
   </div>
