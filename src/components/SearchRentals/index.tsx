@@ -38,10 +38,18 @@ const SearchRentals: React.FC = () => {
   }
 
   const nextPage = () => {
+     if (limit >= rentals.length) {
+      return;
+    }
+
     setOffset(() => offset + limit);
   }
 
   const prevPage = () => {
+    if (offset === 0) {
+      return;
+    }
+
     setOffset(() => offset - limit);
   }
 
